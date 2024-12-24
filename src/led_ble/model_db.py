@@ -11,7 +11,6 @@ DEFAULT_MODEL = 0xE3
 
 @dataclass(frozen=True)
 class LEDBLEModel:
-
     model_num: int  # The model number aka byte 1
     models: list[str]  # The model names from discovery
     description: str  # Description of the model ({type} {color_mode})
@@ -32,6 +31,15 @@ class LEDBLEModel:
 
 
 MODELS = [
+    LEDBLEModel(
+        model_num=0x00,
+        models=["Hello Fairy:BMSL6"],
+        description="Controller RGB",
+        protocols=[
+            MinVersionProtocol(0, "Fairy"),
+        ],
+        color_modes=COLOR_MODES_RGB_W,  # Formerly rgbwcapable
+    ),
     LEDBLEModel(
         model_num=0x04,
         models=["Triones:C10511000166"],
